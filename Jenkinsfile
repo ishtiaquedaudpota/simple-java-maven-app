@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                withMaven(maven: 'Maven', mavenSettingsConfig: 'mvn-setting-xml')
+		sh 'mvn -B -DskipTests clean package' 
             }
         }
     }
