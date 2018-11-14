@@ -1,12 +1,5 @@
 pipeline {
-    
-    environment {
-		HTTPS_PROXY = '192.168.56.101:3128'
-		HTTP_PROXY = '192.168.56.101:3128'
-        	PROXY_ENABLED = 'TRUE'
-        }
     agent {
-
 	docker {
             image 'maven:3-alpine' 
             args '-v /root/.m2:/root/.m2' 
@@ -16,7 +9,7 @@ pipeline {
     stages {
 	stage('Build') { 
             steps {
-		sh 'mvn -B -DskipTests clean package' 
+		sh 'mvn -Dhttps.proxyHost=192.168.56.101 -Dhttps.proxyPort=3128 -B -DskipTests clean package' 
             }
         }
     }
