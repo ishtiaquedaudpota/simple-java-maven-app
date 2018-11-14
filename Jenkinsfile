@@ -1,10 +1,11 @@
 pipeline {
-    agent {
-        environment {
-       		HTTPS_PROXY = '192.168.56.101:3128'
-        	HTTP_PROXY = '192.168.56.101:3128'
+    
+    environment {
+		HTTPS_PROXY = '192.168.56.101:3128'
+		HTTP_PROXY = '192.168.56.101:3128'
         	PROXY_ENABLED = 'TRUE'
         }
+    agent {
 
 	docker {
             image 'maven:3-alpine' 
