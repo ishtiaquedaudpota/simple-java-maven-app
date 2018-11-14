@@ -14,7 +14,7 @@ pipeline {
         }
 	stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn -Dhttps.proxyHost=192.168.56.101 -Dhttps.proxyPort=3128 test'
             }
             post {
                 always {
