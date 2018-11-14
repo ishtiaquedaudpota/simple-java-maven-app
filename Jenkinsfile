@@ -12,5 +12,15 @@ pipeline {
 		sh 'mvn -Dhttps.proxyHost=192.168.56.101 -Dhttps.proxyPort=3128 -B -DskipTests clean package' 
             }
         }
+	stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
     }
 }
